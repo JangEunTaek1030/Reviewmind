@@ -101,7 +101,25 @@ def main() -> None:
     print("-" * 30)
     print(classification_report(y_test, y_pred, zero_division=0))
 
-    # 6) Save model pipeline
+    # 6) Beginner-friendly error analysis
+    # Note: this dataset currently only has a "cleaned_review" column.
+    # We use it as the review text to inspect model mistakes.
+    error_analysis_df = pd.DataFrame(
+        {
+            "test_review_text": X_test.values,
+            "true_sentiment": y_test.values,
+            "predicted_sentiment": y_pred,
+        }
+    )
+    error_analysis_df["is_correct"] = (
+        error_analysis_df["true_sentiment"] == error_analysis_df["predicted_sentiment"]
+    )
+
+    print("\nError Analysis (first 10 test examples)")
+    print("-" * 30)
+    print(error_analysis_df.head(10).to_string(index=False))
+
+    # 7) Save model pipeline
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with output_path.open("wb") as f:
         pickle.dump(model, f)
