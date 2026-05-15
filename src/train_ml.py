@@ -51,7 +51,7 @@ def build_pipeline() -> Pipeline:
     """Create a simple TF-IDF + Logistic Regression pipeline."""
     return Pipeline(
         [
-            ("tfidf", TfidfVectorizer()),
+            ("tfidf", TfidfVectorizer(ngram_range=(1, 2), max_features=5000)),
             ("classifier", LogisticRegression(max_iter=1000)),
         ]
     )
