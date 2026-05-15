@@ -1,31 +1,102 @@
 cleaned_review,sentiment
-this product is amazing and works very well,positive
-i love this item and the quality is excellent,positive
-the delivery was fast and the product is great,positive
-this is a wonderful purchase and i am very happy,positive
-the app is easy to use and very helpful,positive
-excellent quality and very good value,positive
-i really like this product and would buy again,positive
-the service was friendly and the experience was smooth,positive
-this product exceeded my expectations,positive
-everything works perfectly and i am satisfied,positive
-the design is beautiful and the performance is strong,positive
-this is reliable useful and worth the money,positive
-i had a great experience with this product,positive
-the result is impressive and the product feels premium,positive
-the setup was simple and the product works perfectly,positive
-this product is terrible and does not work,negative
-i hate this item because the quality is awful,negative
-the delivery was slow and the package was damaged,negative
-this is a bad purchase and i am very disappointed,negative
-the app keeps crashing and is very frustrating,negative
-poor quality and not worth the money,negative
-i really dislike this product and will not buy again,negative
-the service was rude and the experience was painful,negative
-this product failed to meet my expectations,negative
-nothing works properly and i am not satisfied,negative
-the design is ugly and the performance is weak,negative
-this is unreliable useless and a waste of money,negative
-i had a terrible experience with this product,negative
-the result is disappointing and the product feels cheap,negative
-the setup was confusing and the product works badly,negative
+this phone feels solid and the battery lasts all day,positive
+my coffee maker is quick quiet and easy to clean,positive
+the headphones fit comfortably and sound clear,positive
+i was surprised by how smooth the app feels,positive
+customer support answered my question in minutes,positive
+this notebook has thick paper and a nice cover,positive
+the shoes are lightweight and comfortable for long walks,positive
+shipping was on time and the item arrived in perfect condition,positive
+the camera takes sharp photos even at night,positive
+setup took five minutes and everything worked immediately,positive
+this blender crushes ice without struggling,positive
+the packaging looked neat and protected the product well,positive
+i use this planner every day and it keeps me organized,positive
+the keyboard keys are responsive and quiet,positive
+this desk is sturdy and looks great in my room,positive
+video quality is crisp and calls no longer freeze,positive
+the tutorial was clear so i could start right away,positive
+this service saved me a lot of time this week,positive
+i like the simple layout and clean design,positive
+the jacket keeps me warm without feeling bulky,positive
+it connected to wifi instantly and stayed stable,positive
+the recipe app gives practical ideas for busy nights,positive
+the brush bristles are soft but still clean deeply,positive
+this game is fun relaxing and runs without lag,positive
+my order was correct and included a helpful note,positive
+the price is fair for the quality i received,positive
+i have used it for months and it still performs well,positive
+the scent is light fresh and not overpowering,positive
+this lamp gives warm light that is perfect for reading,positive
+the seat cushion reduced my back pain during work,positive
+the class videos are engaging and easy to follow,positive
+this speaker fills the room with balanced sound,positive
+the seller was polite and quickly fixed a small issue,positive
+i appreciate the clear instructions and labeled parts,positive
+this moisturizer absorbs fast and feels non greasy,positive
+the update improved speed and removed old bugs,positive
+my kids enjoyed the activity kit for hours,positive
+the tool feels durable and cuts cleanly,positive
+this hotel room was spotless and the bed was cozy,positive
+check in was simple and staff were welcoming,positive
+this pen writes smoothly and does not smudge,positive
+the map directions were accurate and easy to read,positive
+this online course explains concepts in plain language,positive
+the vacuum is powerful yet surprisingly quiet,positive
+the fabric is soft and the stitching looks strong,positive
+i am happy with how quickly the package arrived,positive
+the interface is beginner friendly and intuitive,positive
+this sunscreen blends in well and leaves no white cast,positive
+the grocery delivery was complete and carefully packed,positive
+after the patch the app stopped freezing on startup,positive
+this toaster burns toast on one side every morning,negative
+my package arrived late and the box was crushed,negative
+the app logs me out whenever i open it,negative
+customer service kept transferring me without solving anything,negative
+these shoes rubbed my heels and caused blisters,negative
+the laptop fan is loud even when i browse the web,negative
+setup instructions skipped steps and confused me,negative
+the screen has dead pixels right out of the box,negative
+this shampoo made my hair feel dry and brittle,negative
+the chair wobbles and feels unsafe to sit on,negative
+checkout failed three times before payment went through,negative
+sound quality is muffled and the volume is low,negative
+the zipper broke after two days of normal use,negative
+my order was missing parts and support replied days later,negative
+this cleaner leaves sticky residue on the counter,negative
+battery drains so quickly that i charge twice a day,negative
+the class materials were outdated and hard to understand,negative
+this watch band irritated my skin within an hour,negative
+the paint peeled off after a single wash,negative
+i expected better build quality for this price,negative
+the website is cluttered and difficult to navigate,negative
+video calls keep dropping despite strong internet,negative
+this pan heats unevenly and burns food in spots,negative
+notifications arrive late so i miss important updates,negative
+the handle feels flimsy and might snap soon,negative
+the fragrance is too strong and gives me a headache,negative
+this game crashes whenever i reach the second level,negative
+threads came loose on the first day i wore it,negative
+the return process was slow and overly complicated,negative
+my train booking disappeared after payment confirmation,negative
+this lotion felt greasy and never absorbed properly,negative
+the remote buttons stick and respond inconsistently,negative
+i waited an hour and still did not receive a confirmation email,negative
+the product photos were misleading compared with reality,negative
+this pillow flattened quickly and lost support,negative
+the new update removed features i used daily,negative
+these earbuds disconnect whenever i put my phone in my pocket,negative
+the coffee tastes burnt even on the mild setting,negative
+this book is full of typos and awkward sentences,negative
+the edge of the case is sharp and uncomfortable,negative
+my room was noisy all night because walls were thin,negative
+the bike arrived with a bent wheel and scratched frame,negative
+it freezes often and requires frequent restarts,negative
+the soap left my skin itchy and irritated,negative
+this printer jams paper almost every other page,negative
+there was a hidden fee added at checkout,negative
+the tutorial moves too fast and skips key details,negative
+this backpack strap tore during my first commute,negative
+i contacted support twice and never got a useful answer,negative
+these cookies were stale and tasted old,negative
+the fit is awkward and the sleeves are far too short,negative
