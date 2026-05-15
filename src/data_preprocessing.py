@@ -25,7 +25,7 @@ def clean_text(text: Optional[str]) -> str:
     str
         Cleaned review text.
     """
-    if text is None:
+    if text is None or pd.isna(text):
         return ""
 
     text = str(text)
