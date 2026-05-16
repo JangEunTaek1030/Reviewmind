@@ -47,6 +47,17 @@ def load_processed_data(csv_path: Path) -> pd.DataFrame:
     return df
 
 
+def print_label_distribution(labels: pd.Series, title: str) -> None:
+    """Print count and percentage for each sentiment label."""
+    counts = labels.value_counts().sort_index()
+    percentages = labels.value_counts(normalize=True).sort_index() * 100
+
+    print(f"\n{title}")
+    print("-" * len(title))
+    for label in counts.index:
+        print(f"{label}: {counts[label]} ({percentages[label]:.1f}%)")
+
+
 def build_pipeline() -> Pipeline:
     """Create a simple TF-IDF + Logistic Regression pipeline."""
     return Pipeline(
@@ -69,6 +80,12 @@ def main() -> None:
     X = df["cleaned_review"]
     y = df["sentiment"]
 
+    # Basic dataset diagnostics
+    print("Dataset Diagnostics")
+    print("-" * 30)
+    print(f"Total samples: {len(df)}")
+    print_label_distribution(y, "Overall label distribution")
+
     # 3) Split into train and test sets
     X_train, X_test, y_train, y_test = train_test_split(
         X,
@@ -77,6 +94,11 @@ def main() -> None:
         random_state=42,
         stratify=y,
     )
+
+    print(f"\nTraining samples: {len(X_train)}")
+    print(f"Test samples    : {len(X_test)}")
+    print_label_distribution(y_train, "Training label distribution")
+    print_label_distribution(y_test, "Test label distribution")
 
     # 4) Train model
     model = build_pipeline()
