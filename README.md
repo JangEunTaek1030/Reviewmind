@@ -54,7 +54,8 @@ Reviewmind/
 │   ├── prepare_imdb_dataset.py
 │   ├── train_ml.py
 │   ├── compare_models.py
-│   └── visualize_results.py
+│   ├── visualize_results.py
+│   └── run_pipeline.py
 ├── outputs/
 │   └── figures/
 │       ├── model_comparison.png
@@ -75,7 +76,8 @@ Reviewmind/
 │   ├── prepare_imdb_dataset.py
 │   ├── train_ml.py
 │   ├── compare_models.py
-│   └── visualize_results.py
+│   ├── visualize_results.py
+│   └── run_pipeline.py
 ├── outputs/
 │   └── figures/
 │       ├── model_comparison.png
@@ -132,7 +134,12 @@ python src/compare_models.py
 python src/visualize_results.py
 ```
 
-### 4.9 Run Streamlit demo
+### 4.9 Run the full local ML pipeline (recommended)
+```powershell
+python src/run_pipeline.py
+```
+
+### 4.10 Run Streamlit demo
 ```powershell
 streamlit run app/streamlit_app.py
 ```
@@ -181,7 +188,12 @@ python src/compare_models.py
 python src/visualize_results.py
 ```
 
-#### 4.9 启动 Streamlit 演示
+#### 4.9 一键运行完整本地机器学习流水线（推荐）
+```powershell
+python src/run_pipeline.py
+```
+
+#### 4.10 启动 Streamlit 演示
 ```powershell
 streamlit run app/streamlit_app.py
 ```
