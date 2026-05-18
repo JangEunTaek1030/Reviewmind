@@ -27,8 +27,7 @@ Reviewmind/
 │   ├── raw/
 │   │   └── .gitkeep
 │   └── processed/
-│       ├── .gitkeep
-│       └── processed_reviews.csv
+│       └── .gitkeep
 ├── notebooks/
 │   └── .gitkeep
 ├── src/
@@ -138,13 +137,18 @@ which helps beginners interpret model behavior beyond a single summary metric.
 
 ## Data and Model Artifact Policy
 
-Generated files (for example processed datasets, trained model binaries, or large experiment outputs) should **not** be committed directly to Git.
+Generated files are created locally and should **not** be committed to Git.
+
+In this project, the following are generated artifacts:
+
+- `data/processed/*.csv` (for example `processed_reviews.csv` created by `src/prepare_imdb_dataset.py`)
+- `outputs/models/*.pkl` (trained model files created during training)
 
 Recommended practice:
 
 - Keep reproducible scripts in Git (`src/*.py`)
-- Keep large/generated artifacts in ignored folders (`data/`, `outputs/` as configured)
-- Share artifacts via external storage or release assets when needed
+- Regenerate processed data/models locally when needed
+- Share large artifacts via external storage or release assets when needed
 
 ## Roadmap
 
