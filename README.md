@@ -151,6 +151,8 @@ python src/prepare_imdb_dataset.py
 python src/train_ml.py
 ```
 
+Demo note: the Streamlit prediction is powered by a **TF-IDF + Logistic Regression baseline** and can be less reliable for very short inputs, numeric-only ratings (for example `2/10`), sarcasm, or ambiguous reviews.
+
 ## Data and Model Artifact Policy
 
 Generated files are created locally and should **not** be committed to Git.
