@@ -116,6 +116,26 @@ Latest local experiment on the 2,500-sample IMDb subset:
 - **Recall:** 0.8400
 - **F1-score:** 0.8398
 
+## Results Visualization
+
+The latest baseline comparison includes **Multinomial Naive Bayes**, **Logistic Regression**, and **Linear SVM**.
+Among these three baseline models, **Logistic Regression currently performs best** on this IMDb subset.
+
+### Model Comparison (Accuracy and F1-score)
+
+![Model comparison chart](outputs/figures/model_comparison.png)
+
+- Multinomial Naive Bayes: Accuracy **0.8140**, F1-score **0.8140**
+- Logistic Regression: Accuracy **0.8400**, F1-score **0.8398**
+- Linear SVM: Accuracy **0.8040**, F1-score **0.8039**
+
+### Confusion Matrix (Best Baseline: Logistic Regression)
+
+![Confusion matrix](outputs/figures/confusion_matrix.png)
+
+The confusion matrix provides a clear view of correct and incorrect sentiment classifications,
+which helps beginners interpret model behavior beyond a single summary metric.
+
 ## Data and Model Artifact Policy
 
 Generated files (for example processed datasets, trained model binaries, or large experiment outputs) should **not** be committed directly to Git.
