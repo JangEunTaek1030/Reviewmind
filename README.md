@@ -135,6 +135,22 @@ Among these three baseline models, **Logistic Regression currently performs best
 The confusion matrix provides a clear view of correct and incorrect sentiment classifications,
 which helps beginners interpret model behavior beyond a single summary metric.
 
+
+## Run the Streamlit Demo
+
+After training the baseline model, start the Streamlit app locally:
+
+```powershell
+streamlit run app/streamlit_app.py
+```
+
+If the app says the model file is missing, run:
+
+```powershell
+python src/prepare_imdb_dataset.py
+python src/train_ml.py
+```
+
 ## Data and Model Artifact Policy
 
 Generated files are created locally and should **not** be committed to Git.
