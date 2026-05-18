@@ -1,129 +1,138 @@
 # ReviewMind
 
-ReviewMind is my first end-to-end machine learning and deep learning project.
+ReviewMind is a beginner-friendly Natural Language Processing (NLP) project for sentiment analysis of user reviews.  
+The current focus is building a clean and reproducible baseline pipeline on real IMDb movie review data, then expanding toward stronger models and a simple interactive app.
 
-This project focuses on user review analysis. It aims to classify user reviews by sentiment and, in later stages, by topic. The goal is to build a complete and reproducible NLP pipeline, including data preprocessing, exploratory data analysis, traditional machine learning baselines, deep learning models, evaluation, and a simple interactive demo.
+## Project Overview
 
-## Project Motivation
+ReviewMind helps you learn and practice the end-to-end workflow for text classification:
 
-User reviews contain valuable information about product quality, customer satisfaction, pain points, and business opportunities. This project explores how machine learning and deep learning methods can be used to automatically understand review text.
+1. Prepare and balance a real-world sentiment dataset (IMDb)
+2. Preprocess review text into model-ready features
+3. Train a baseline model (TF-IDF + Logistic Regression)
+4. Evaluate results with standard classification metrics
+5. Extend the project with deeper analysis, better models, and deployment
 
-As my first GitHub machine learning project, ReviewMind is designed to be beginner-friendly, well-structured, and easy to improve step by step.
+This repository is organized so beginners can run each step locally and understand the full machine learning pipeline.
 
-## Project Goals
-
-- Build a clean NLP data preprocessing pipeline
-- Perform exploratory data analysis on user review data
-- Train traditional machine learning baseline models
-- Train a simple deep learning model for text classification
-- Compare model performance using standard evaluation metrics
-- Visualize results with charts and confusion matrices
-- Build a simple Streamlit demo for real-time prediction
-
-## Planned Machine Learning Pipeline
+## Current Project Structure
 
 ```text
-Raw Review Data
-        |
-        v
-Data Cleaning & Preprocessing
-        |
-        v
-Exploratory Data Analysis
-        |
-        v
-Feature Engineering
-        |
-        v
-Machine Learning Baseline Models
-        |
-        v
-Deep Learning Model
-        |
-        v
-Model Evaluation
-        |
-        v
-Interactive Demo
-```
-
-## Planned Project Structure
-
-```text
-reviewmind/
+Reviewmind/
 ├── README.md
 ├── requirements.txt
 ├── .gitignore
 ├── LICENSE
 ├── data/
 │   ├── raw/
+│   │   └── .gitkeep
 │   └── processed/
+│       ├── .gitkeep
+│       └── processed_reviews.csv
 ├── notebooks/
-│   ├── 01_eda.ipynb
-│   ├── 02_ml_baseline.ipynb
-│   └── 03_deep_learning_model.ipynb
+│   └── .gitkeep
 ├── src/
+│   ├── .gitkeep
 │   ├── data_preprocessing.py
-│   ├── train_ml.py
-│   ├── train_dl.py
-│   ├── evaluate.py
-│   └── utils.py
+│   ├── prepare_imdb_dataset.py
+│   └── train_ml.py
 ├── outputs/
 │   ├── figures/
+│   │   └── .gitkeep
 │   └── models/
+│       └── .gitkeep
 └── app/
-    └── streamlit_app.py
+    └── .gitkeep
 ```
 
-## Models to Be Implemented
-### Traditional Machine Learning Models
-Logistic Regression
+## Local Setup (Windows PowerShell)
 
-Naive Bayes
+> Tested as a standard local workflow using Python virtual environments.
 
-Linear SVM
+1. **Clone the repository**
 
-### Deep Learning Models
+   ```powershell
+   git clone https://github.com/<your-username>/Reviewmind.git
+   cd Reviewmind
+   ```
 
-Embedding-based neural network
+2. **Create a virtual environment**
 
-LSTM or BiLSTM text classifier
+   ```powershell
+   python -m venv .venv
+   ```
 
-### Evaluation Metrics
+3. **Activate the virtual environment**
 
-The models will be evaluated using:
+   ```powershell
+   .\.venv\Scripts\Activate.ps1
+   ```
 
-Accuracy
+   If PowerShell blocks activation, run this once in PowerShell as Administrator:
 
-Precision
+   ```powershell
+   Set-ExecutionPolicy RemoteSigned
+   ```
 
-Recall
+4. **Install dependencies**
 
-F1-score
+   ```powershell
+   pip install --upgrade pip
+   pip install -r requirements.txt
+   ```
 
-Confusion Matrix
+## Prepare the IMDb Dataset
 
-## Tech Stack
+Use the dataset preparation script to build a balanced local subset:
 
-Python
+- **Total samples:** 2,500
+- **Negative reviews:** 1,250
+- **Positive reviews:** 1,250
 
-pandas
+Run:
 
-numpy
+```powershell
+python src/prepare_imdb_dataset.py
+```
 
-scikit-learn
+The script prepares a balanced IMDb sentiment dataset for training and evaluation.
 
-matplotlib
+## Train the Baseline Model
 
-seaborn
+Train a traditional machine learning baseline using **TF-IDF features + Logistic Regression**:
 
-PyTorch or TensorFlow
+```powershell
+python src/train_ml.py
+```
 
-Streamlit
+This command trains the baseline model and prints evaluation metrics.
 
-GitHub
+## Latest IMDb Baseline Results
 
+Latest local experiment on the 2,500-sample IMDb subset:
+
+- **Accuracy:** 0.8400
+- **Precision:** 0.8414
+- **Recall:** 0.8400
+- **F1-score:** 0.8398
+
+## Data and Model Artifact Policy
+
+Generated files (for example processed datasets, trained model binaries, or large experiment outputs) should **not** be committed directly to Git.
+
+Recommended practice:
+
+- Keep reproducible scripts in Git (`src/*.py`)
+- Keep large/generated artifacts in ignored folders (`data/`, `outputs/` as configured)
+- Share artifacts via external storage or release assets when needed
+
+## Roadmap
+
+- Compare multiple baseline and advanced models (e.g., Logistic Regression, Linear SVM, Naive Bayes)
+- Add confusion matrix visualization for clearer error analysis
+- Build a simple Streamlit demo for interactive sentiment prediction
+- Implement and evaluate a deep learning text classifier
 
 ## Author
 
-Created by JangEunTaek1030 as a first machine learning and deep learning GitHub project.
+Created by JangEunTaek1030 as a beginner-friendly machine learning and deep learning project.
