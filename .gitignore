@@ -216,3 +216,9 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# ReviewMind generated artifacts
+data/processed/*.csv
+outputs/models/*.pkl
+__pycache__/
+*.pyc
