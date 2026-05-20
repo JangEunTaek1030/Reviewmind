@@ -222,3 +222,10 @@ data/processed/*.csv
 outputs/models/*.pkl
 __pycache__/
 *.pyc
+
+# Transformer model artifacts
+outputs/models/transformer_baseline/
+outputs/models/**/checkpoint-*/
+*.safetensors
+
+outputs/models/transformer_debug/
