@@ -154,19 +154,16 @@ def main() -> None:
             predictions=predictions,
             references=labels,
             average="binary",
-            zero_division=0,
         )["precision"]
         recall = recall_metric.compute(
             predictions=predictions,
             references=labels,
             average="binary",
-            zero_division=0,
         )["recall"]
         f1 = f1_metric.compute(
             predictions=predictions,
             references=labels,
             average="binary",
-            zero_division=0,
         )["f1"]
 
         return {
@@ -184,7 +181,7 @@ def main() -> None:
         per_device_eval_batch_size=16,
         num_train_epochs=2,
         weight_decay=0.01,
-        evaluation_strategy="epoch",
+        eval_strategy="epoch",
         save_strategy="epoch",
         load_best_model_at_end=True,
         metric_for_best_model="f1",
@@ -198,7 +195,7 @@ def main() -> None:
         args=training_args,
         train_dataset=tokenized_train,
         eval_dataset=tokenized_test,
-        tokenizer=tokenizer,
+        processing_class=tokenizer,
         data_collator=data_collator,
         compute_metrics=compute_metrics,
     )
