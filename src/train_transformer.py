@@ -14,6 +14,7 @@ Expected columns in the CSV:
 """
 
 from pathlib import Path
+import argparse
 
 import evaluate
 import numpy as np
@@ -31,10 +32,12 @@ from transformers import (
 
 MODEL_NAME = "distilbert-base-uncased"
 INPUT_PATH = Path("data/processed/processed_reviews.csv")
-OUTPUT_DIR = Path("outputs/models/transformer_baseline")
+OUTPUT_DIR_BASELINE = Path("outputs/models/transformer_baseline")
+OUTPUT_DIR_DEBUG = Path("outputs/models/transformer_debug")
 TEXT_COLUMN = "cleaned_review"
 LABEL_COLUMN = "sentiment"
-MAX_LENGTH = 256
+FULL_MAX_LENGTH = 256
+DEBUG_MAX_LENGTH = 128
 
 
 def load_processed_data(csv_path: Path) -> pd.DataFrame:
@@ -72,19 +75,81 @@ def encode_labels(labels: pd.Series) -> tuple[np.ndarray, dict, dict]:
     return encoded_labels, label2id, id2label
 
 
-def tokenize_batch(examples: dict, tokenizer: AutoTokenizer) -> dict:
+def tokenize_batch(examples: dict, tokenizer: AutoTokenizer, max_length: int) -> dict:
     """Tokenize a batch of texts."""
     return tokenizer(
         examples[TEXT_COLUMN],
         truncation=True,
-        max_length=MAX_LENGTH,
+        max_length=max_length,
     )
+
+
+def parse_args() -> argparse.Namespace:
+    """Parse command-line arguments for full or debug training."""
+    parser = argparse.ArgumentParser(
+        description="Train the ReviewMind DistilBERT sentiment baseline."
+    )
+    parser.add_argument(
+        "--debug",
+        action="store_true",
+        help=(
+            "Run a fast debug training mode with a small balanced subset "
+            "for local pipeline testing."
+        ),
+    )
+    return parser.parse_args()
+
+
+def build_debug_subset(df: pd.DataFrame, random_state: int = 42) -> pd.DataFrame:
+    """Build a small class-balanced subset for quick local debugging."""
+    target_train = 300
+    target_test = 100
+    target_total = target_train + target_test
+
+    class_counts = df[LABEL_COLUMN].value_counts()
+    n_classes = len(class_counts)
+    samples_per_class = target_total // n_classes
+
+    subset_parts = []
+    for label in sorted(class_counts.index):
+        label_df = df[df[LABEL_COLUMN] == label]
+        take_n = min(samples_per_class, len(label_df))
+        subset_parts.append(label_df.sample(n=take_n, random_state=random_state))
+
+    subset_df = pd.concat(subset_parts, ignore_index=True)
+    return subset_df.sample(frac=1.0, random_state=random_state).reset_index(drop=True)
 
 
 def main() -> None:
     """Run training, evaluation, and model saving."""
+    args = parse_args()
+    is_debug = args.debug
+
     # 1) Load data
     df = load_processed_data(INPUT_PATH)
+
+    if is_debug:
+        print("\n" + "!" * 72)
+        print("WARNING: DEBUG MODE ENABLED")
+        print(
+            "Debug metrics are only for pipeline testing and must not be reported "
+            "as final model performance."
+        )
+        print("!" * 72 + "\n")
+        df = build_debug_subset(df, random_state=42)
+        max_length = DEBUG_MAX_LENGTH
+        output_dir = OUTPUT_DIR_DEBUG
+        train_batch_size = 8
+        eval_batch_size = 8
+        num_train_epochs = 1
+        test_size = 0.25
+    else:
+        max_length = FULL_MAX_LENGTH
+        output_dir = OUTPUT_DIR_BASELINE
+        train_batch_size = 16
+        eval_batch_size = 16
+        num_train_epochs = 2
+        test_size = 0.2
 
     # 2) Encode labels from text/categorical values to integer ids
     y_encoded, label2id, id2label = encode_labels(df[LABEL_COLUMN])
@@ -99,7 +164,7 @@ def main() -> None:
     X_train, X_test, y_train, y_test = train_test_split(
         X,
         y_encoded,
-        test_size=0.2,
+        test_size=test_size,
         random_state=42,
         stratify=y_encoded,
     )
@@ -117,12 +182,12 @@ def main() -> None:
     # 5) Load tokenizer and tokenize data
     tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
     tokenized_train = train_dataset.map(
-        lambda batch: tokenize_batch(batch, tokenizer),
+        lambda batch: tokenize_batch(batch, tokenizer, max_length),
         batched=True,
         desc="Tokenizing training split",
     )
     tokenized_test = test_dataset.map(
-        lambda batch: tokenize_batch(batch, tokenizer),
+        lambda batch: tokenize_batch(batch, tokenizer, max_length),
         batched=True,
         desc="Tokenizing test split",
     )
@@ -175,11 +240,11 @@ def main() -> None:
 
     # 8) Configure trainer
     training_args = TrainingArguments(
-        output_dir=str(OUTPUT_DIR / "checkpoints"),
+        output_dir=str(output_dir / "checkpoints"),
         learning_rate=2e-5,
-        per_device_train_batch_size=16,
-        per_device_eval_batch_size=16,
-        num_train_epochs=2,
+        per_device_train_batch_size=train_batch_size,
+        per_device_eval_batch_size=eval_batch_size,
+        num_train_epochs=num_train_epochs,
         weight_decay=0.01,
         eval_strategy="epoch",
         save_strategy="epoch",
@@ -212,11 +277,11 @@ def main() -> None:
     print(f"F1-score : {eval_results['eval_f1']:.4f}")
 
     # 10) Save final model + tokenizer
-    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    trainer.save_model(str(OUTPUT_DIR))
-    tokenizer.save_pretrained(str(OUTPUT_DIR))
+    output_dir.mkdir(parents=True, exist_ok=True)
+    trainer.save_model(str(output_dir))
+    tokenizer.save_pretrained(str(output_dir))
 
-    print(f"Saved trained model and tokenizer to: {OUTPUT_DIR}")
+    print(f"Saved trained model and tokenizer to: {output_dir}")
 
 
 if __name__ == "__main__":

@@ -227,3 +227,5 @@ __pycache__/
 outputs/models/transformer_baseline/
 outputs/models/**/checkpoint-*/
 *.safetensors
+
+outputs/models/transformer_debug/

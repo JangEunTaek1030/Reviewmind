@@ -153,6 +153,11 @@ streamlit run app/streamlit_app.py
 python src/train_transformer.py
 ```
 
+### 4.12 Fast Transformer debug check (quick environment test)
+```powershell
+python src/train_transformer.py --debug
+```
+
 ### 中文说明
 #### 4.1 克隆仓库
 ```powershell
@@ -210,6 +215,11 @@ streamlit run app/streamlit_app.py
 #### 4.11 训练 v2.0 Transformer 基线（DistilBERT）
 ```powershell
 python src/train_transformer.py
+```
+
+#### 4.12 Transformer 快速调试检查（环境快速验证）
+```powershell
+python src/train_transformer.py --debug
 ```
 
 ---
